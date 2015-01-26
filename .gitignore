@@ -1,0 +1,7 @@
+# Compiled files
+
+*.so
+*.o
+*.a
+*.pyc
+
