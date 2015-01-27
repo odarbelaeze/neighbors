@@ -5,3 +5,8 @@
 *.a
 *.pyc
 
+# Folders for compile
+
+docs/build
+build
+
