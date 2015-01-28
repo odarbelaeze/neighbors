@@ -27,7 +27,7 @@ Logger& Logger::info(const std::string& message)
 }
 
 
-Logger& Logger::warming(const std::string& message)
+Logger& Logger::warning(const std::string& message)
 {
     target << termcolor::grey
            << termcolor::on_yellow

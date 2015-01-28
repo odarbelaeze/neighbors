@@ -19,15 +19,27 @@ endif (CMAKE_COMPILER_IS_GNUCXX OR CMAKE_COMPILER_IS_CLANG)
 # dependencies
 #
 
+# add_subdirectory(${neighbors_SOURCE_DIR}/vendor/docopt.cpp)
+add_subdirectory(${neighbors_SOURCE_DIR}/vendor/libkdtree)
 add_subdirectory(${neighbors_SOURCE_DIR}/vendor/termcolor)
-include_directories(${TERMCOLOR_INCLUDE})
 
 #
 # project settings
 #
 
-set (NEIGHBORS_INCLUDE ${neighbors_SOURCE_DIR}/include)
-include_directories(${NEIGHBORS_INCLUDE})
+include_directories(
+    include/
+    vendor/docopt.cpp/
+    vendor/libkdtree/
+    vendor/termcolor/include/
+)
 
-add_executable(${CMAKE_PROJECT_NAME} src/neighbors.cc)
+set(SRCS
+    src/neighbors.cc
+    src/Logger.cc
+    vendor/docopt.cpp/docopt.cpp
+)
+
+add_executable(${CMAKE_PROJECT_NAME} ${SRCS})
+install(TARGETS ${CMAKE_PROJECT_NAME} RUNTIME DESTINATION bin)
 

@@ -10,3 +10,9 @@
 docs/build
 build
 
+# Somehow anoying editor temp files
+\#*\#
+~*
+*.swp
+*~
+
