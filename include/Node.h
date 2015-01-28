@@ -60,7 +60,7 @@ public:
      * @param i the axis
      * @return the `i`th component of the position of the node
      */
-    value_type operator[] (const size_t i) const;
+    value_type operator[] (size_t i) const;
 
     /**
      * @brief Compares the node with other according to their ids

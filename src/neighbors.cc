@@ -5,9 +5,12 @@
 #include <valarray>
 
 #include "Logger.h"
+#include "Node.h"
+#include "NodeRepo.h"
 
 int main(int argc, char *argv[])
 {
+    NodeRepo repo;
     Logger logger;
 
     logger.log("Hola que hace");

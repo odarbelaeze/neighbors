@@ -36,6 +36,8 @@ include_directories(
 
 set(SRCS
     src/neighbors.cc
+    src/Node.cc
+    src/NodeRepo.cc
     src/Logger.cc
     vendor/docopt.cpp/docopt.cpp
 )

@@ -11,7 +11,7 @@ Node::~Node ()
 }
 
 
-Node::value_type Node::operator[] (const size_t i) const
+Node::value_type Node::operator[] (size_t i) const
 {
     return _pos[i];
 }
