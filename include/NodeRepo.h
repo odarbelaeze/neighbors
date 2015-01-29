@@ -69,7 +69,7 @@ public:
     /**
      * @brief Returns a vector holding the nodes within the specified sphere
      *
-     * @param pos
+     * @param ref
      * @param radius
      * @return a vector holding the nodes
      */
@@ -81,7 +81,7 @@ public:
      * The range is computed using the Manhattan distance around the
      * specified position `pos`
      *
-     * @param pos
+     * @param ref
      * @param range
      * @return a vector holding the nodes
      */
