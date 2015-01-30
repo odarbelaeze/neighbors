@@ -45,3 +45,13 @@ set(SRCS
 add_executable(${CMAKE_PROJECT_NAME} ${SRCS})
 install(TARGETS ${CMAKE_PROJECT_NAME} RUNTIME DESTINATION bin)
 
+#
+# Does gtest work
+#
+
+find_package(GTest REQUIRED)
+if (${GTEST_FOUND})
+    message("GTest found")
+    message(${GTEST_INCLUDE_DIRS})
+endif (${GTEST_FOUND})
+
