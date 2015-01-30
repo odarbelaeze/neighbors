@@ -19,53 +19,56 @@
  */
 class Logger
 {
-public:
-    /**
-     * @brief Creates a Logger instance given an ostream target
-     *
-     * @param target
-     */
-    Logger (std::ostream& target=std::cout);
+    public:
+        /**
+         * @brief Creates a Logger instance given an ostream target
+         *
+         * @param target
+         */
+        Logger (std::ostream& target=std::cout);
 
-    virtual ~Logger ();
+        /**
+         * @brief Destroys the logger
+         */
+        virtual ~Logger ();
 
-    /**
-     * @brief Logs the message to the target without accent.
-     *
-     * @param message
-     * @return this logger instance for a fluent API
-     */
-    Logger& log(const std::string& message);
+        /**
+         * @brief Logs the message to the target without accent.
+         *
+         * @param message
+         * @return this logger instance for a fluent API
+         */
+        Logger& log(const std::string& message);
 
-    /**
-     * @brief Logs the message to the target with information accent.
-     *
-     * @param message
-     * @return this logger instance for a fluent API
-     */
-    Logger& info(const std::string& message);
+        /**
+         * @brief Logs the message to the target with information accent.
+         *
+         * @param message
+         * @return this logger instance for a fluent API
+         */
+        Logger& info(const std::string& message);
 
-    /**
-     * @brief Logs the message to the target with warning accent.
-     *
-     * @param message
-     * @return this logger instance for a fluent API
-     */
-    Logger& warning(const std::string& message);
+        /**
+         * @brief Logs the message to the target with warning accent.
+         *
+         * @param message
+         * @return this logger instance for a fluent API
+         */
+        Logger& warning(const std::string& message);
 
-    /**
-     * @brief Logs the message to the target with error accent.
-     *
-     * @param message
-     * @return this logger instance for a fluent API
-     */
-    Logger& error(const std::string& message);
+        /**
+         * @brief Logs the message to the target with error accent.
+         *
+         * @param message
+         * @return this logger instance for a fluent API
+         */
+        Logger& error(const std::string& message);
 
-protected:
-    /**
-     * @brief std::ostream reference of where to log
-     */
-    std::ostream& target;
+    protected:
+        /**
+         * @brief std::ostream reference of where to log
+         */
+        std::ostream& target;
 
 };
 
