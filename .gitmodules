@@ -1,0 +1,16 @@
+[submodule "docopt.cpp"]
+    path = vendor/docopt.cpp
+    url = https://github.com/docopt/docopt.cpp.git
+
+[submodule "jsoncpp"]
+    path = vendor/jsoncpp
+    url = https://github.com/open-source-parsers/jsoncpp.git
+
+[submodule "libkdtree"]
+    path = vendor/libkdtree
+    url = git://git.debian.org/git/libkdtree/libkdtree.git
+
+[submodule "tremcolor"]
+    path = vendor/termcolor
+    url = https://github.com/ikalnitsky/termcolor.git
+
