@@ -24,25 +24,25 @@ Coordinate::value_type Coordinate::operator[] (std::size_t i) const
 }
 
 
-Coordinate::value_type Coordinate::x() const
+Coordinate::value_type Coordinate::x () const
 {
     return _vec[0];
 }
 
 
-Coordinate::value_type Coordinate::y() const
+Coordinate::value_type Coordinate::y () const
 {
     return _vec[1];
 }
 
 
-Coordinate::value_type Coordinate::z() const
+Coordinate::value_type Coordinate::z () const
 {
     return _vec[2];
 }
 
 
-Coordinate::value_type Coordinate::distanceTo(const Coordinate& other)
+Coordinate::value_type Coordinate::distanceTo (const Coordinate& other)
 {
     auto&& a = this->_vec;
     auto&& b = other._vec;
@@ -54,7 +54,7 @@ Coordinate::value_type Coordinate::distanceTo(const Coordinate& other)
 }
 
 
-Coordinate Coordinate::move(const Coordinate& other)
+Coordinate Coordinate::move (const Coordinate& other)
 {
     Coordinate coordinate = *this;
     coordinate._vec[0] += other._vec[0];

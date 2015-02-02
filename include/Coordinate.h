@@ -66,21 +66,21 @@ class Coordinate
          *
          * @return Coordinate at `x`
          */
-        value_type x() const;
+        value_type x () const;
 
         /**
          * @brief Returns the coordinate at `y`
          *
          * @return Coordinate at `y`
          */
-        value_type y() const;
+        value_type y () const;
 
         /**
          * @brief Returns the coordinate at `y`
          *
          * @return Coordinate at `y`
          */
-        value_type z() const;
+        value_type z () const;
 
         /**
          * @brief Returns the euclidean distance to other coordinate
@@ -89,19 +89,19 @@ class Coordinate
          *
          * @return Distance
          */
-        value_type distanceTo(const Coordinate& other);
+        value_type distanceTo (const Coordinate& other);
 
         /**
          * @brief Returns a new coordinate instance
          *
-         * Computes a new Coordinate instance by moving to the coordinate other
-         * using this coordinate as the origin.
+         * Computes a new Coordinate instance by moving to the coordinate
+         * other using this coordinate as the origin.
          *
          * @param other
          *
          * @return A new coordinate instance
          */
-        Coordinate move(const Coordinate& other);
+        Coordinate move (const Coordinate& other);
 
     protected:
         store_type _vec;
