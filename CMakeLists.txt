@@ -54,7 +54,10 @@ if (${GTEST_FOUND})
     message("GTest found")
     include_directories(${GTEST_INCLUDE_DIRS})
 
-    add_executable(tests tests/test.cc tests/AtomTests.cc src/Atom.cc)
+    add_executable(tests tests/test.cc
+        tests/AtomTests.cc src/Atom.cc
+        tests/CoordinateTests.cc src/Coordinate.cc
+    )
     target_link_libraries(tests ${GTEST_BOTH_LIBRARIES} pthread)
     add_test(AllAtomTests tests)
 
