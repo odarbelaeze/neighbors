@@ -13,6 +13,9 @@
 #include <string>
 #include <valarray>
 
+#include "Atom.h"
+#include "Coordinate.h"
+
 /**
  * @brief Stores some data and relates it to a point in space
  */
@@ -26,9 +29,14 @@ class Node
         typedef size_t id_type;
 
         /**
-         * @brief Type of node
+         * @brief Type of data stored in the node
          */
-        typedef std::string type_type;
+        typedef Atom::shared_ptr_type data_type;
+
+        /**
+         * @brief Type of key used by the atom store
+         */
+        typedef Atom::key_type atom_key_type;
 
         /**
          * @brief Type of value to adhere to the interface required by libkdtree
@@ -38,16 +46,17 @@ class Node
         /**
          * @brief Type used to store the position of a node
          */
-        typedef std::valarray<value_type> pos_type;
+        typedef Coordinate pos_type;
 
         /**
          * @brief Builds a node with id, type and position
          *
-         * @param id
-         * @param type
-         * @param pos
+         * @param id Id of this node
+         * @param data Data to be stored in this node
+         * @param pos Position of the node
+         * @param ghost Is this node a ghost node
          */
-        Node (id_type id, type_type type, pos_type pos);
+        Node (id_type id, data_type data, pos_type pos, bool ghost=false);
 
         /**
          * @brief Should destroy the node calling default destructors
@@ -86,7 +95,7 @@ class Node
          * @param pos
          * @return distance
          */
-        value_type distanceTo(const pos_type& pos) const;
+        value_type distanceTo (const pos_type& pos) const;
 
         /**
          * @brief Computes the euclidean distance to other node
@@ -94,28 +103,28 @@ class Node
          * @param other
          * @return distance
          */
-        value_type distanceTo(const Node& other) const;
+        value_type distanceTo (const Node& other) const;
 
         /**
          * @brief accesor for the id member
          *
          * @return id
          */
-        const id_type& id() const;
+        const id_type& id () const;
 
         /**
          * @brief Accesor for the type member
          *
-         * @return type
+         * @return The data stored in the node
          */
-        const type_type& type() const;
+        const data_type& data () const;
 
         /**
          * @brief Accesor for the pos member
          *
          * @return pos
          */
-        const pos_type& pos() const;
+        const pos_type& pos () const;
 
     protected:
         /**
@@ -126,13 +135,19 @@ class Node
         /**
          * @brief An identifier for the type of node
          */
-        type_type _type;
+        data_type _data;
 
 
         /**
          * @brief Vector type holding the position of the node in the space
          */
         pos_type _pos;
+
+
+        /**
+         * @brief A flag to indicate if the node is a ghost
+         */
+        bool _is_ghost;
 };
 
 #endif

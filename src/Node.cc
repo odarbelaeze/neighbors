@@ -1,7 +1,7 @@
 #include "Node.h"
 
-Node::Node (Node::id_type id, Node::type_type type, Node::pos_type pos)
-    : _id(id), _type(type), _pos(pos)
+Node::Node (Node::id_type id, Node::data_type data, Node::pos_type pos, bool ghost)
+    : _id(id), _data(data), _pos(pos), _is_ghost(ghost)
 {
 }
 
@@ -19,7 +19,7 @@ Node::value_type Node::operator[] (size_t i) const
 
 bool Node::operator== (const Node& other) const
 {
-    return this->_id == other._id;
+    return (this->_is_ghost == other._is_ghost) && (this->_id == other._id);
 }
 
 
@@ -31,8 +31,8 @@ bool Node::operator!= (const Node& other) const
 
 Node::value_type Node::distanceTo(const Node::pos_type& pos) const
 {
-    auto diff = pos - this->_pos;
-    return std::sqrt((diff * diff).sum());
+    // Deffer to the pos type
+    return _pos.distanceTo(pos);
 }
 
 
@@ -49,9 +49,9 @@ const Node::id_type& Node::id() const
 
 
 
-const Node::type_type& Node::type() const
+const Node::data_type& Node::data() const
 {
-    return this->_type;
+    return this->_data;
 }
 
 
