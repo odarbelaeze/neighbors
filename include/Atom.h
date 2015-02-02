@@ -14,6 +14,16 @@ class Atom : public std::enable_shared_from_this<Atom>
         typedef std::string key_type;
 
         /**
+         * @brief A shared pointer to an Atom
+         */
+        typedef std::shared_ptr<Atom> shared_ptr_type;
+
+        /**
+         * @brief A weak ptr to an atom
+         */
+        typedef std::weak_ptr<Atom> weak_ptr_type;
+
+        /**
          * @brief Creates an atom of type
          *
          * @param type
@@ -44,7 +54,7 @@ class Atom : public std::enable_shared_from_this<Atom>
          * @param type
          * @return An observer pointer to the atom stored
          */
-        static std::weak_ptr<Atom> create(key_type type);
+        static weak_ptr_type create(key_type type);
 
         /**
          * @brief Finds an atom of type `type` if not found it creates
@@ -53,7 +63,7 @@ class Atom : public std::enable_shared_from_this<Atom>
          * @param type
          * @return An observer pointer to the atom stored
          */
-        static std::weak_ptr<Atom> getOrCreate(key_type type);
+        static weak_ptr_type getOrCreate(key_type type);
 
         /**
          * @brief Finds an atom of type `type` if not found fails
@@ -61,13 +71,13 @@ class Atom : public std::enable_shared_from_this<Atom>
          * @param type
          * @return An observer pointer to the atom stored
          */
-        static std::weak_ptr<Atom> getOrFail(key_type type);
+        static weak_ptr_type getOrFail(key_type type);
 
     protected:
         key_type _type;
 
     private:
-        static std::map<key_type, std::shared_ptr<Atom>> atoms;
+        static std::map<key_type, shared_ptr_type> atoms;
 
 };
 
