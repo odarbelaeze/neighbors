@@ -5,7 +5,7 @@
 #include <memory>
 #include <string>
 
-class Atom
+class Atom : public std::enable_shared_from_this<Atom>
 {
     public:
         /**
@@ -29,7 +29,7 @@ class Atom
         /**
          * @brief Registers the atom instance into the static map
          */
-        void save() const;
+        void save();
 
         /**
          * @brief Returns the type of the atom on use.
@@ -44,7 +44,7 @@ class Atom
          * @param type
          * @return An observer pointer to the atom stored
          */
-        static Atom* create(key_type type);
+        static std::weak_ptr<Atom> create(key_type type);
 
         /**
          * @brief Finds an atom of type `type` if not found it creates
@@ -53,7 +53,7 @@ class Atom
          * @param type
          * @return An observer pointer to the atom stored
          */
-        static Atom* getOrCreate(key_type type);
+        static std::weak_ptr<Atom> getOrCreate(key_type type);
 
         /**
          * @brief Finds an atom of type `type` if not found fails
@@ -61,7 +61,7 @@ class Atom
          * @param type
          * @return An observer pointer to the atom stored
          */
-        static Atom* getOrFail(key_type type);
+        static std::weak_ptr<Atom> getOrFail(key_type type);
 
     protected:
         key_type _type;

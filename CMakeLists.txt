@@ -52,6 +52,11 @@ install(TARGETS ${CMAKE_PROJECT_NAME} RUNTIME DESTINATION bin)
 find_package(GTest REQUIRED)
 if (${GTEST_FOUND})
     message("GTest found")
-    message(${GTEST_INCLUDE_DIRS})
+    include_directories(${GTEST_INCLUDE_DIRS})
+
+    add_executable(tests tests/test.cc tests/AtomTests.cc src/Atom.cc)
+    target_link_libraries(tests ${GTEST_BOTH_LIBRARIES} pthread)
+    add_test(AllAtomTests tests)
+
 endif (${GTEST_FOUND})
 
