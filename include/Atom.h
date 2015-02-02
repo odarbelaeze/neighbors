@@ -1,3 +1,10 @@
+/**
+ * @file Atom.h
+ * @brief It defines a Atom class that acts as an instance and a static store
+ * @author Oscar David Arbeláez
+ * @version 0.0.1
+ * @date 2015-02-02
+ */
 #ifndef ATOM_H_
 #define ATOM_H_
 
@@ -5,6 +12,16 @@
 #include <memory>
 #include <string>
 
+/**
+ * @brief Defines an Atom class and container
+ *
+ * For now it just stores the type of atom and manages to use only
+ * one instance of each type.
+ *
+ * @note: If you want to instantiate an Atom and then call the save
+ *        method on it, make sure that you wrap your object into a shared
+ *        pointer `auto instance = std::make_shared<Atom>('Fe');`
+ */
 class Atom : public std::enable_shared_from_this<Atom>
 {
     public:
@@ -24,7 +41,7 @@ class Atom : public std::enable_shared_from_this<Atom>
         typedef std::weak_ptr<Atom> weak_ptr_type;
 
         /**
-         * @brief Creates an atom of type
+         * @brief Creates an Atom of type
          *
          * @param type
          */
@@ -74,9 +91,15 @@ class Atom : public std::enable_shared_from_this<Atom>
         static weak_ptr_type getOrFail(key_type type);
 
     protected:
+        /**
+         * @brief Type of this instance of atom
+         */
         key_type _type;
 
     private:
+        /**
+         * @brief Store of atoms that allows having just one for each type
+         */
         static std::map<key_type, shared_ptr_type> atoms;
 
 };

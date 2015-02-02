@@ -36,15 +36,11 @@ class Coordinate
 
         /**
          * @brief Forcing the compiler to generate a copy constructor
-         *
-         * @param Coordinate
          */
         Coordinate (const Coordinate&) = default;
 
         /**
          * @brief Forcing the compiler to generate a move constructor
-         *
-         * @param
          */
         Coordinate (Coordinate&&) = default;
 
@@ -104,6 +100,9 @@ class Coordinate
         Coordinate move (const Coordinate& other);
 
     protected:
+        /**
+         * @brief Underlying array containig the coordinate
+         */
         store_type _vec;
 
 };
