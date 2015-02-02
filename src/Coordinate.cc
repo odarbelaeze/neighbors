@@ -42,7 +42,7 @@ Coordinate::value_type Coordinate::z () const
 }
 
 
-Coordinate::value_type Coordinate::distanceTo (const Coordinate& other)
+Coordinate::value_type Coordinate::distanceTo (const Coordinate& other) const
 {
     auto&& a = this->_vec;
     auto&& b = other._vec;
@@ -54,7 +54,7 @@ Coordinate::value_type Coordinate::distanceTo (const Coordinate& other)
 }
 
 
-Coordinate Coordinate::move (const Coordinate& other)
+Coordinate Coordinate::move (const Coordinate& other) const
 {
     Coordinate coordinate = *this;
     coordinate._vec[0] += other._vec[0];

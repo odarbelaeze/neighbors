@@ -85,7 +85,7 @@ class Coordinate
          *
          * @return Distance
          */
-        value_type distanceTo (const Coordinate& other);
+        value_type distanceTo (const Coordinate& other) const;
 
         /**
          * @brief Returns a new coordinate instance
@@ -97,7 +97,7 @@ class Coordinate
          *
          * @return A new coordinate instance
          */
-        Coordinate move (const Coordinate& other);
+        Coordinate move (const Coordinate& other) const;
 
     protected:
         /**
