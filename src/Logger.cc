@@ -1,50 +1,10 @@
 #include "Logger.h"
 
-Logger::Logger(std::ostream& target)
-    : target(target)
+Logger::Logger(std::ostream& target, std::string separator)
+    : _target(target), _sep(separator)
 {}
 
 
 Logger::~Logger()
 {}
-
-
-Logger& Logger::log(const std::string& message)
-{
-    target << message
-           << std::endl;
-    return *this;
-}
-
-
-Logger& Logger::info(const std::string& message)
-{
-    target << termcolor::green
-           << message
-           << termcolor::reset
-           << std::endl;
-    return *this;
-}
-
-
-Logger& Logger::warning(const std::string& message)
-{
-    target << termcolor::grey
-           << termcolor::on_yellow
-           << message
-           << termcolor::reset
-           << std::endl;
-    return *this;
-}
-
-
-Logger& Logger::error(const std::string& message)
-{
-    target << termcolor::white
-           << termcolor::on_red
-           << message
-           << termcolor::reset
-           << std::endl;
-    return *this;
-}
 

@@ -10,6 +10,7 @@
 #define LOGGER_HPP_
 
 #include <iostream>
+#include <string>
 #include <ostream>
 
 #include "termcolor/termcolor.hpp"
@@ -25,7 +26,7 @@ class Logger
          *
          * @param target
          */
-        Logger (std::ostream& target=std::cout);
+        Logger (std::ostream& target=std::cout, std::string separator = " ");
 
         /**
          * @brief Destroys the logger
@@ -38,7 +39,27 @@ class Logger
          * @param message
          * @return this logger instance for a fluent API
          */
-        Logger& log(const std::string& message);
+        template<typename Type>
+        Logger& log(Type message)
+        {
+            _target << message << std::endl;
+            return *this;
+        }
+
+        /**
+         * @brief Logs the message to the target
+         *
+         * @param message
+         * @param messages
+         *
+         * @return This Logger instance for a fluent API
+         */
+        template<typename Head, typename ...Tail>
+        Logger& log(Head message, Tail... messages)
+        {
+            _target << message << _sep;
+            return log<Tail...>(messages...);
+        }
 
         /**
          * @brief Logs the message to the target with information accent.
@@ -46,7 +67,30 @@ class Logger
          * @param message
          * @return this logger instance for a fluent API
          */
-        Logger& info(const std::string& message);
+        template<typename Type>
+        Logger& info(Type message)
+        {
+            _target << message
+                   << termcolor::reset
+                   << std::endl;
+            return *this;
+        }
+
+        /**
+         * @brief Logs the message to the target with information accent.
+         *
+         * @param message
+         * @param messages
+         *
+         * @return This Logger instance for a fluent API
+         */
+        template<typename Head, typename ...Tail>
+        Logger& info(Head message, Tail... messages)
+        {
+            _target << termcolor::green
+                    << message << _sep;
+            return info<Tail...>(messages...);
+        }
 
         /**
          * @brief Logs the message to the target with warning accent.
@@ -54,7 +98,31 @@ class Logger
          * @param message
          * @return this logger instance for a fluent API
          */
-        Logger& warning(const std::string& message);
+        template<typename Type>
+        Logger& warning(Type message)
+        {
+            _target << message
+                   << termcolor::reset
+                   << std::endl;
+            return *this;
+        }
+
+        /**
+         * @brief Logs the message to the target with warning accent.
+         *
+         * @param message
+         * @param messages
+         *
+         * @return This Logger instance for a fluent API
+         */
+        template<typename Head, typename ...Tail>
+        Logger& warnin(Head message, Tail... messages)
+        {
+            _target << termcolor::grey
+                    << termcolor::on_yellow
+                    << message << _sep;
+            return warning<Tail...>(messages...);
+        }
 
         /**
          * @brief Logs the message to the target with error accent.
@@ -62,13 +130,38 @@ class Logger
          * @param message
          * @return this logger instance for a fluent API
          */
-        Logger& error(const std::string& message);
+        template<typename Type>
+        Logger& error(Type message)
+        {
+            _target << message
+                   << termcolor::reset
+                   << std::endl;
+            return *this;
+        }
+
+        /**
+         * @brief Logs the message to the target with warning accent.
+         *
+         * @param message
+         * @param messages
+         *
+         * @return This Logger instance for a fluent API
+         */
+        template<typename Head, typename ...Tail>
+        Logger& error(Head message, Tail... messages)
+        {
+            _target << termcolor::white
+                    << termcolor::on_red
+                    << message << _sep;
+            return error<Tail...>(messages...);
+        }
 
     protected:
         /**
          * @brief std::ostream reference of where to log
          */
-        std::ostream& target;
+        std::ostream& _target;
+        std::string _sep;
 
 };
 
