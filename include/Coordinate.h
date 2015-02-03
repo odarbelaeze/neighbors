@@ -40,11 +40,6 @@ class Coordinate
         Coordinate (const Coordinate&) = default;
 
         /**
-         * @brief Forcing the compiler to generate a move constructor
-         */
-        Coordinate (Coordinate&&) = default;
-
-        /**
          * @brief Destroys the coordinate
          */
         virtual ~Coordinate ();
