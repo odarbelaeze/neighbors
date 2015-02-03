@@ -58,6 +58,7 @@ if (${GTEST_FOUND})
     add_executable(tests tests/test.cc
         tests/AtomTests.cc src/Atom.cc
         tests/CoordinateTests.cc src/Coordinate.cc
+        tests/NodeTests.cc src/Node.cc
     )
     target_link_libraries(tests ${GTEST_BOTH_LIBRARIES} pthread)
     add_test(AllAtomTests tests)
