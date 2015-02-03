@@ -22,6 +22,7 @@ endif (CMAKE_COMPILER_IS_GNUCXX OR CMAKE_COMPILER_IS_CLANG)
 # add_subdirectory(${neighbors_SOURCE_DIR}/vendor/docopt.cpp)
 add_subdirectory(${neighbors_SOURCE_DIR}/vendor/libkdtree)
 add_subdirectory(${neighbors_SOURCE_DIR}/vendor/termcolor)
+add_subdirectory(${neighbors_SOURCE_DIR}/vendor/jsoncpp)
 
 #
 # project settings
@@ -36,14 +37,16 @@ include_directories(
 
 set(SRCS
     src/neighbors.cc
-    #    src/Coordinate.cc
-    #    src/Node.cc
-    #    src/NodeRepo.cc
+    src/Atom.cc
+    src/Coordinate.cc
     src/Logger.cc
+    src/Node.cc
+    src/NodeRepo.cc
     vendor/docopt.cpp/docopt.cpp
 )
 
 add_executable(${CMAKE_PROJECT_NAME} ${SRCS})
+target_link_libraries(${CMAKE_PROJECT_NAME} jsoncpp_lib_static)
 install(TARGETS ${CMAKE_PROJECT_NAME} RUNTIME DESTINATION bin)
 
 #
