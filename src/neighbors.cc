@@ -31,8 +31,8 @@ int main(int argc, char *argv[])
         bool success = reader.parse(conf, root);
         if (!success)
         {
-            logger.error("Failed to parse configuration");
-            logger.error( reader.getFormattedErrorMessages());
+            logger.error("Failed to parse configuration")
+                  .error(reader.getFormattedErrorMessages());
             return 1;
         }
     }
@@ -52,6 +52,7 @@ int main(int argc, char *argv[])
     // Define the max_cut of the interactions
 
     double max_cut = 0.0;  // Can't have negative values
+
     for (auto&& interaction : interactions)
     {
         if (interaction.second.cut > max_cut)
@@ -60,11 +61,12 @@ int main(int argc, char *argv[])
         }
     }
 
-    std::cout << "Max cut " << max_cut << std::endl;
+    logger.info("Max cut", max_cut);
 
     // Take in the inputs and store the in the node repo
 
     NodeRepo repo;
+
     {
         std::ifstream input(root.get("input", "input").asString());
         size_t id = 0;
@@ -73,6 +75,28 @@ int main(int argc, char *argv[])
         while (input >> x >> y >> z >> type)
         {
             repo.insert(Node(id++, type, {x, y, z}));
+        }
+    }
+
+    repo.optimize();
+
+    size_t interaction_id = 0;
+
+    for (auto&& node : repo)
+    {
+        auto around = repo.findWithinSphere(node, max_cut);
+        for (auto&& other : around)
+        {
+            if (node == other) continue;
+            std::string key = node.data()->type() + "-" + other.data()->type();
+            bool interact = interactions.find(key) != interactions.end();
+            if (interact)
+            {
+                auto interaction = interactions.at(key);
+                if (node.distanceTo(other) < interaction.cut) {
+                    logger.log(interaction_id++, node.id(), other.id(), interaction.exchange);
+                }
+            }
         }
     }
 

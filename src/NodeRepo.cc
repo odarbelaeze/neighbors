@@ -41,11 +41,32 @@ NodeRepo::node_list_type NodeRepo::findWithinSphere (
     return nodes;
 }
 
+
 NodeRepo::node_list_type NodeRepo::findWithinRange (
         NodeRepo::node_type ref, double range) const
 {
     NodeRepo::node_list_type nodes;
     (this->_tree).find_within_range(ref, range, std::back_inserter(nodes));
     return nodes;
+}
+
+
+NodeRepo::node_list_type NodeRepo::all() const
+{
+    NodeRepo::node_list_type nodes;
+    std::copy((this->_tree).begin(), (this->_tree).end(), std::back_inserter(nodes));
+    return nodes;
+}
+
+
+NodeRepo::const_iterator NodeRepo::begin() const
+{
+    return (this->_tree).begin();
+}
+
+
+NodeRepo::const_iterator NodeRepo::end() const
+{
+    return (this->_tree).end();
 }
 

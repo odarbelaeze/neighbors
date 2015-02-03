@@ -30,6 +30,11 @@ class NodeRepo
         typedef KDTree::KDTree<3, Node> tree_type;
 
         /**
+         * @brief Iterator over the nodes in the tree
+         */
+        typedef tree_type::const_iterator const_iterator;
+
+        /**
          * @brief The position type of the Node
          */
         typedef Node node_type;
@@ -90,9 +95,25 @@ class NodeRepo
         /**
          * @brief Returns all the nodes in the repo
          *
+         * @note This operation is implemented in a very expensive way.
+         *
          * @return a vector holding the nodes
          */
         node_list_type all() const;
+
+        /**
+         * @brief Const forward iterator to the leftmost item of the tree
+         *
+         * @return const_iterator
+         */
+        const_iterator begin() const;
+
+        /**
+         * @brief Const fordwar iterator to one past the last element of the tree
+         *
+         * @return const_iterator
+         */
+        const_iterator end() const;
 
     protected:
         /**
