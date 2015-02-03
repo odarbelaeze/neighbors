@@ -29,6 +29,11 @@ class Node
         typedef size_t id_type;
 
         /**
+         * @brief Repository containing the data
+         */
+        typedef Atom data_store_type;
+
+        /**
          * @brief Type of data stored in the node
          */
         typedef Atom::shared_ptr_type data_type;
@@ -36,7 +41,7 @@ class Node
         /**
          * @brief Type of key used by the atom store
          */
-        typedef Atom::key_type atom_key_type;
+        typedef Atom::key_type data_key_type;
 
         /**
          * @brief Type of value to adhere to the interface required by libkdtree
@@ -57,6 +62,16 @@ class Node
          * @param ghost Is this node a ghost node
          */
         Node (id_type id, data_type data, pos_type pos, bool ghost=false);
+
+        /**
+         * @brief Builds a node finding the data by key
+         *
+         * @param id
+         * @param key
+         * @param pos
+         * @param ghost
+         */
+        explicit Node (id_type id, data_key_type key, pos_type pos, bool ghost=false);
 
         /**
          * @brief Should destroy the node calling default destructors
