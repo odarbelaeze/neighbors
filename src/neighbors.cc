@@ -93,7 +93,7 @@ int main(int argc, char *argv[])
             if (interact)
             {
                 auto interaction = interactions.at(key);
-                if (node.distanceTo(other) < interaction.cut) {
+                if (node.distanceTo(other) <= interaction.cut) {
                     logger.log(interaction_id++, node.id(), other.id(), interaction.exchange);
                 }
             }
