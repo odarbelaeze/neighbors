@@ -28,7 +28,8 @@ Node::value_type Node::operator[] (size_t i) const
 
 bool Node::operator== (const Node& other) const
 {
-    return (this->_is_ghost == other._is_ghost) && (this->_id == other._id);
+    if (this->_is_ghost || other._is_ghost) return false;
+    return this->_id == other._id;
 }
 
 

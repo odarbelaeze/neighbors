@@ -40,11 +40,67 @@ TEST_F(NodeTest, bracketAccesorOperatorYieldsRightValue)
     ASSERT_FLOAT_EQ(1.0, node[2]);
 }
 
-TEST_F(NodeTest, bracketAccesorOperatorThrowsExceptionWhenIndexIsWrong)
+TEST_F(NodeTest, equalityOperatorReturnsTrueOnSameIdNotGohsts)
 {
-    Node node(id, atom.lock(), pos);
-    ASSERT_THROW(node[-1], std::out_of_range);
-    ASSERT_THROW(node[3], std::out_of_range);
-    ASSERT_THROW(node[4], std::out_of_range);
+    Node node_a(id, atom.lock(), pos, false);
+    Node node_b(id, atom.lock(), pos, false);
+    ASSERT_TRUE(node_a == node_b);
 }
 
+TEST_F(NodeTest, equalityOperatorReturnsFalseOnSameIdGohsts)
+{
+    Node node_a(id, atom.lock(), pos, true);
+    Node node_b(id, atom.lock(), pos, true);
+    ASSERT_FALSE(node_a == node_b);
+}
+
+TEST_F(NodeTest, equalityOperatorReturnsFalseOnSameIdOneGost)
+{
+    Node node_a(id, atom.lock(), pos, true);
+    Node node_b(id, atom.lock(), pos, false);
+    ASSERT_FALSE(node_a == node_b);
+    ASSERT_FALSE(node_b == node_a);
+}
+
+TEST_F(NodeTest, inequalityOperatorReturnsFalseOnSameIdNotGohsts)
+{
+    Node node_a(id, atom.lock(), pos, false);
+    Node node_b(id, atom.lock(), pos, false);
+    ASSERT_FALSE(node_a != node_b);
+}
+
+TEST_F(NodeTest, inequalityOperatorReturnsTrueOnSameIdGohsts)
+{
+    Node node_a(id, atom.lock(), pos, true);
+    Node node_b(id, atom.lock(), pos, true);
+    ASSERT_TRUE(node_a != node_b);
+}
+
+TEST_F(NodeTest, inequalityOperatorReturnsTrueOnSameIdOneGost)
+{
+    Node node_a(id, atom.lock(), pos, true);
+    Node node_b(id, atom.lock(), pos, false);
+    ASSERT_TRUE(node_a != node_b);
+    ASSERT_TRUE(node_b != node_a);
+}
+
+TEST_F(NodeTest, idAccesorRetrurnsRightId)
+{
+    Node node(id, atom.lock(), pos);
+    ASSERT_EQ(id, node.id());
+}
+
+TEST_F(NodeTest, dataAccesorReturnsTheSamePointer)
+{
+    Node node(id, atom.lock(), pos);
+    ASSERT_EQ(atom.lock(), node.data());
+}
+
+TEST_F(NodeTest, posAccesorReturnsTheRightPos)
+{
+    Node node(id, atom.lock(), pos);
+    for (size_t i = 0; i < 3; ++i)
+    {
+        ASSERT_FLOAT_EQ(pos[i], node.pos()[i]);
+    }
+}
