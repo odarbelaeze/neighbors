@@ -1,6 +1,12 @@
 #include "Coordinate.h"
 
 
+Coordinate::Coordinate ()
+    : _vec{ {0.0, 0.0, 0.0} }
+{
+}
+
+
 Coordinate::Coordinate (value_type x, value_type y, value_type z)
     : _vec{ {x, y, z} }
 {
@@ -54,6 +60,12 @@ Coordinate::value_type Coordinate::distanceTo (const Coordinate& other) const
 }
 
 
+Coordinate::value_type Coordinate::norm() const
+{
+    return this->distanceTo(Coordinate());
+}
+
+
 Coordinate Coordinate::move (const Coordinate& other) const
 {
     Coordinate coordinate = *this;
@@ -62,4 +74,3 @@ Coordinate Coordinate::move (const Coordinate& other) const
     coordinate._vec[2] += other._vec[2];
     return coordinate;
 }
-

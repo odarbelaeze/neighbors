@@ -19,6 +19,11 @@ class Coordinate
         typedef std::array<value_type, 3> store_type;
 
         /**
+         * @brief Builds the origin coordinate
+         */
+        Coordinate ();
+
+        /**
          * @brief Builds a coordinate out of the tree coordinates
          *
          * @param x
@@ -81,6 +86,14 @@ class Coordinate
          * @return Distance
          */
         value_type distanceTo (const Coordinate& other) const;
+
+        /**
+         * @brief Computes the distance of the coordinate to the
+         *        origin.
+         *
+         * @return value_type
+         */
+        value_type norm() const;
 
         /**
          * @brief Returns a new coordinate instance
