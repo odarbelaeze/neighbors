@@ -1,16 +1,24 @@
 #include "Node.h"
 
-Node::Node (Node::id_type id, Node::data_type data, Node::pos_type pos, bool ghost)
-    : _id(id), _data(data), _pos(pos), _is_ghost(ghost)
+Node::Node (
+        Node::id_type id,
+        Node::data_type data,
+        Node::pos_type pos,
+        bool ghost) :
+    _id(id), _data(data), _pos(pos), _is_ghost(ghost)
 {
 }
 
 
-Node::Node (Node::id_type id, Node::data_key_type key, Node::pos_type pos, bool ghost)
-    : _id(id),
-      _data(Node::data_store_type::getOrCreate(key)),
-      _pos(pos),
-      _is_ghost(ghost)
+Node::Node (
+        Node::id_type id,
+        Node::data_key_type key,
+        Node::pos_type pos,
+        bool ghost) :
+    _id(id),
+    _data(Node::data_store_type::getOrCreate(key)),
+    _pos(pos),
+    _is_ghost(ghost)
 {
 }
 
