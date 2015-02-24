@@ -7,11 +7,11 @@
 class NodeTest : public ::testing::Test
 {
     public:
-        NodeTest()
-           : id(1), pos(1, 1, 1), atom(Atom::create("Au")),
-             node(id, atom.lock(), pos),
-             ghost(id, atom.lock(), pos, true),
-             not_ghost(id, atom.lock(), pos, false) {}
+        NodeTest() :
+            id(1), pos(1, 1, 1), atom(Atom::create("Au")),
+            node(id, atom.lock(), pos),
+            ghost(id, atom.lock(), pos, true),
+            not_ghost(id, atom.lock(), pos, false) {}
 
     protected:
 
