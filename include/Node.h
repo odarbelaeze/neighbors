@@ -89,18 +89,25 @@ class Node
         /**
          * @brief Compares the node with other according to their ids
          *
+         * Two Nodes with the same `id` are considered identical except
+         * when at least one of them are ghosts.
+         *
          * @param other
          *
-         * @return
+         * @return bool
          */
         bool operator== (const Node& other) const;
 
         /**
-         * @brief Tests unequallity of this node with other according to their ids
+         * @brief Tests unequallity of this node with other according to
+         *        their ids
+         *
+         * Two Nodes with the same `id` are considered identical except
+         * when at least one of them are ghosts.
          *
          * @param other
          *
-         * @return
+         * @return bool
          */
         bool operator!= (const Node& other) const;
 

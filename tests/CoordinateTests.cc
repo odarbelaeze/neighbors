@@ -27,6 +27,15 @@ TEST(CoordinateTests, bracketAccesorReturnsCorrectValues)
 }
 
 
+TEST(CoordinateTests, bracketAccesorFailsOnWrongIndex)
+{
+    double x = 0.5, y = 0.8, z = -10;
+    Coordinate coordinate(x, y, z);
+    ASSERT_THROW(coordinate[3], std::out_of_range);
+    ASSERT_THROW(coordinate[-1], std::out_of_range);
+}
+
+
 TEST(CoordinateTests, methodAccesorsYieldCorrectValues)
 {
     double x = 0.5, y = 0.8, z = -10;

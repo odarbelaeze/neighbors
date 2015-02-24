@@ -20,7 +20,7 @@ Coordinate::~Coordinate ()
 
 Coordinate::value_type Coordinate::operator[] (std::size_t i) const
 {
-    return _vec[i];
+    return _vec.at(i);
 }
 
 
