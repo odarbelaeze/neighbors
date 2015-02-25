@@ -14,6 +14,8 @@ class CoordinateTest : public ::testing::Test
             y = 0.8;
             z = -10;
 
+            scalar = 1.5;
+
             coordinate = Coordinate(x, y, z);
             other = Coordinate(x + 1, y + 1, z + 1);
         }
@@ -21,6 +23,7 @@ class CoordinateTest : public ::testing::Test
         Coordinate::value_type x;
         Coordinate::value_type y;
         Coordinate::value_type z;
+        Coordinate::value_type scalar;
 
         Coordinate coordinate;
         Coordinate other;
@@ -131,4 +134,17 @@ TEST_F(CoordinateTest, scalarProductCompoundOperatorYieldsRightValue)
     ASSERT_FLOAT_EQ(2.0 * x, coordinate.x());
     ASSERT_FLOAT_EQ(2.0 * y, coordinate.y());
     ASSERT_FLOAT_EQ(2.0 * z, coordinate.z());
+}
+
+
+TEST_F(CoordinateTest, compoundOperatorsPreserveTheInstanceOnReturn)
+{
+    std::shared_ptr<Coordinate> coord_ptr(new Coordinate);
+    std::weak_ptr<Coordinate> ward(coord_ptr);
+    (*coord_ptr) += other;
+    (*coord_ptr) -= other;
+    (*coord_ptr) *= scalar;
+    std::weak_ptr<Coordinate> after(coord_ptr);
+
+    ASSERT_EQ(ward.lock(), after.lock());
 }
