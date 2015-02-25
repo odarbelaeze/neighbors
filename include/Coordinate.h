@@ -58,6 +58,73 @@ class Coordinate
         value_type operator[] (std::size_t i) const;
 
         /**
+         * @brief Compund assignment operator to add another coordinate.
+         *
+         * @param other
+         *
+         * @return Coordinate&
+         */
+        Coordinate& operator+= (const Coordinate& other);
+
+        /**
+         * @brief Compund assignment operator to substract another coordinate.
+         *
+         * @param other
+         *
+         * @return Coordinate&
+         */
+        Coordinate& operator-= (const Coordinate& other);
+
+        /**
+         * @brief Compund assignment operator to do scalar product.
+         *
+         * @param other
+         *
+         * @return Coordinate&
+         */
+        Coordinate& operator*= (const value_type& other);
+
+        /**
+         * @brief Non destructive add operation for coordinates
+         *
+         * @param lhs
+         * @param rhs
+         *
+         * @return const Coordinate
+         */
+        friend const Coordinate operator+ (Coordinate lhs, const Coordinate& rhs);
+
+        /**
+         * @brief Non destructive subtract operation for coordinates
+         *
+         * @param lhs
+         * @param rhs
+         *
+         * @return const Coordinate
+         */
+        friend const Coordinate operator- (Coordinate lhs, const Coordinate& rhs);
+
+        /**
+         * @brief Non destructive scalar product for coordinates
+         *
+         * @param lhs
+         * @param rhs
+         *
+         * @return const Coordinate
+         */
+        friend const Coordinate operator* (Coordinate lhs, const value_type& rhs);
+
+        /**
+         * @brief Non destructive scalar product for coordinates in reversed order
+         *
+         * @param lhs
+         * @param rhs
+         *
+         * @return const Coordinate
+         */
+        friend const Coordinate operator* (value_type lhs, const Coordinate& rhs);
+
+        /**
          * @brief Returns the coordinate at `x`
          *
          * @return Coordinate at `x`
