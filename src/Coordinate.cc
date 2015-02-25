@@ -30,6 +30,61 @@ Coordinate::value_type Coordinate::operator[] (std::size_t i) const
 }
 
 
+Coordinate& Coordinate::operator+= (const Coordinate& other)
+{
+    this->_vec[0] += other._vec[0];
+    this->_vec[1] += other._vec[1];
+    this->_vec[2] += other._vec[2];
+
+    return *this;
+}
+
+
+Coordinate& Coordinate::operator-= (const Coordinate& other)
+{
+    this->_vec[0] -= other._vec[0];
+    this->_vec[1] -= other._vec[1];
+    this->_vec[2] -= other._vec[2];
+
+    return *this;
+}
+
+
+Coordinate& Coordinate::operator*= (const Coordinate::value_type& other)
+{
+    this->_vec[0] *= other;
+    this->_vec[1] *= other;
+    this->_vec[2] *= other;
+
+    return *this;
+}
+
+
+const Coordinate operator+ (Coordinate lhs, const Coordinate& rhs)
+{
+    return lhs += rhs;
+}
+
+
+const Coordinate operator- (Coordinate lhs, const Coordinate& rhs)
+{
+    return lhs -= rhs;
+}
+
+
+const Coordinate operator* (Coordinate lhs, const double& rhs)
+{
+    return lhs *= rhs;
+}
+
+
+const Coordinate operator* (double lhs, const Coordinate& rhs)
+{
+    // Requires a non const instance of the rhs
+    return Coordinate(rhs) *= lhs;
+}
+
+
 Coordinate::value_type Coordinate::x () const
 {
     return _vec[0];
@@ -45,6 +100,20 @@ Coordinate::value_type Coordinate::y () const
 Coordinate::value_type Coordinate::z () const
 {
     return _vec[2];
+}
+
+
+Coordinate::value_type Coordinate::dot (const Coordinate& other) const
+{
+    return (this->_vec[0] * other._vec[0] +
+            this->_vec[1] * other._vec[1] +
+            this->_vec[2] * other._vec[2]);
+}
+
+
+Coordinate::value_type dot (const Coordinate& one, const Coordinate& other)
+{
+    return one.dot(other);
 }
 
 

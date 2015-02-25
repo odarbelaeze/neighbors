@@ -146,6 +146,27 @@ class Coordinate
         value_type z () const;
 
         /**
+         * @brief Compute the dot product between coordinates seeing
+         *        them as vectors
+         *
+         * @param other
+         *
+         * @return value_type
+         */
+        value_type dot (const Coordinate& other) const;
+
+        /**
+         * @brief Non member dot __operator__ for coordinates
+         *        seen as vectors.
+         *
+         * @param one
+         * @param other
+         *
+         * @return value type
+         */
+        friend value_type dot (const Coordinate& one, const Coordinate& other);
+
+        /**
          * @brief Returns the euclidean distance to other coordinate
          *
          * @param other
