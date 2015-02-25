@@ -84,8 +84,7 @@ class UnitCell
          *
          * @return a new vector
          */
-        vector_type
-            translate(
+        vector_type translate(
                     integer_type i,
                     integer_type j,
                     integer_type k) const;
@@ -100,8 +99,7 @@ class UnitCell
          *
          * @return a new vector
          */
-        vector_type
-            translate(
+        vector_type translate(
                     integer_type i,
                     integer_type j,
                     integer_type k,
