@@ -148,3 +148,12 @@ TEST_F(CoordinateTest, compoundOperatorsPreserveTheInstanceOnReturn)
 
     ASSERT_EQ(ward.lock(), after.lock());
 }
+
+
+TEST_F(CoordinateTest, dotOperatorYieldsRightValues)
+{
+    ASSERT_FLOAT_EQ(0.0, coordinate.dot(origin));
+    ASSERT_FLOAT_EQ(0.0, other.dot(origin));
+    ASSERT_FLOAT_EQ(coordinate.norm() * coordinate.norm(),
+                    coordinate.dot(coordinate));
+}
