@@ -14,14 +14,19 @@ class CoordinateTest : public ::testing::Test
             y = 0.8;
             z = -10;
 
+            scalar = 1.5;
+
             coordinate = Coordinate(x, y, z);
+            other = Coordinate(x + 1, y + 1, z + 1);
         }
 
         Coordinate::value_type x;
         Coordinate::value_type y;
         Coordinate::value_type z;
+        Coordinate::value_type scalar;
 
         Coordinate coordinate;
+        Coordinate other;
         Coordinate origin;
 };
 
@@ -102,4 +107,53 @@ TEST_F(CoordinateTest, movingACoordinateYieldsAnIndependentInstance)
     std::shared_ptr<Coordinate> source(new Coordinate(0, 0, 0));
     auto result = std::make_shared<Coordinate>(source->move(Coordinate(1, 1, 1)));
     ASSERT_NE(source, result);
+}
+
+
+TEST_F(CoordinateTest, addCompoundOperatorYieldsRightValue)
+{
+    coordinate += other;
+    ASSERT_FLOAT_EQ(2 * x + 1, coordinate.x());
+    ASSERT_FLOAT_EQ(2 * y + 1, coordinate.y());
+    ASSERT_FLOAT_EQ(2 * z + 1, coordinate.z());
+}
+
+
+TEST_F(CoordinateTest, subtractCompoundOperatorYieldsRightValue)
+{
+    coordinate -= other;
+    ASSERT_FLOAT_EQ(-1, coordinate.x());
+    ASSERT_FLOAT_EQ(-1, coordinate.y());
+    ASSERT_FLOAT_EQ(-1, coordinate.z());
+}
+
+
+TEST_F(CoordinateTest, scalarProductCompoundOperatorYieldsRightValue)
+{
+    coordinate *= 2.0;
+    ASSERT_FLOAT_EQ(2.0 * x, coordinate.x());
+    ASSERT_FLOAT_EQ(2.0 * y, coordinate.y());
+    ASSERT_FLOAT_EQ(2.0 * z, coordinate.z());
+}
+
+
+TEST_F(CoordinateTest, compoundOperatorsPreserveTheInstanceOnReturn)
+{
+    std::shared_ptr<Coordinate> coord_ptr(new Coordinate);
+    std::weak_ptr<Coordinate> ward(coord_ptr);
+    (*coord_ptr) += other;
+    (*coord_ptr) -= other;
+    (*coord_ptr) *= scalar;
+    std::weak_ptr<Coordinate> after(coord_ptr);
+
+    ASSERT_EQ(ward.lock(), after.lock());
+}
+
+
+TEST_F(CoordinateTest, dotOperatorYieldsRightValues)
+{
+    ASSERT_FLOAT_EQ(0.0, coordinate.dot(origin));
+    ASSERT_FLOAT_EQ(0.0, other.dot(origin));
+    ASSERT_FLOAT_EQ(coordinate.norm() * coordinate.norm(),
+                    coordinate.dot(coordinate));
 }
