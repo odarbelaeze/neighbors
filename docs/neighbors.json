@@ -5,22 +5,19 @@
         "2": "Atomos de tal cosa y ya",
         "0-0": "Se debe a tal cosa y es tal mecanismo"
     },
-    "dimensions": {
-        "x": {
-            "min": 0.0,
-            "max": 1.0,
-            "periodic": false
-        },
-        "y": {
-            "min": 0.0,
-            "max": 1.0,
-            "periodic": false
-        },
-        "z": {
-            "min": 0.0,
-            "max": 1.0,
-            "periodic": false
+    "unitcell": {
+        "scale": 1.0,
+        "parameters": [1.0, 1.0, 1.0],
+        "unit_vectors": {
+            "uvx": [1.0, 0.0, 0.0],
+            "uvy": [0.0, 1.0, 0.0],
+            "uvz": [0.0, 0.0, 1.0]
         }
+    },
+    "periodicity": {
+        "x": false,
+        "y": false,
+        "z": false
     },
     "interactions": {
         "0-0": {
