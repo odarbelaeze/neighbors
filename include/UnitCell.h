@@ -84,8 +84,7 @@ class UnitCell
          *
          * @return a new vector
          */
-        vector_type
-            translate(
+        vector_type translate(
                     integer_type i,
                     integer_type j,
                     integer_type k) const;
@@ -100,12 +99,29 @@ class UnitCell
          *
          * @return a new vector
          */
-        vector_type
-            translate(
+        vector_type translate(
                     integer_type i,
                     integer_type j,
                     integer_type k,
                     vector_type pos) const;
+
+        /**
+         * @brief Scale a vector into unitcell coordinates
+         *
+         * @param pos
+         *
+         * @return vector_type
+         */
+        vector_type scale(const vector_type& pos) const;
+
+        /**
+         * @brief Scale a vector from unitcell coordinates to real ones
+         *
+         * @param pos
+         *
+         * @return vector_type
+         */
+        vector_type uscale(const vector_type& pos) const;
 
     private:
 

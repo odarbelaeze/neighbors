@@ -62,11 +62,37 @@ UnitCell::~UnitCell ()
 }
 
 
-UnitCell::vector_type
-UnitCell::translate(
+UnitCell::vector_type UnitCell::translate(
         UnitCell::integer_type i,
         UnitCell::integer_type j,
         UnitCell::integer_type k) const
 {
-    // TODO: Need to implement operators on coordinate to do this easy
+    return this->_ucvx * (this->_ucx * i) +
+           this->_ucvy * (this->_ucy * j) +
+           this->_ucvz * (this->_ucz * k) ;
+}
+
+
+UnitCell::vector_type UnitCell::translate(
+        integer_type i,
+        integer_type j,
+        integer_type k,
+        vector_type pos) const
+{
+    return pos + this->translate(i, j, k);
+}
+
+
+UnitCell::vector_type UnitCell::scale(UnitCell::vector_type pos)
+{
+    return UnitCell::vector_type(pos.dot(this->_ucvx) / this->_ucx,
+                                 pos.dot(this->_ucvy) / this->_ucy,
+                                 pos.dot(this->_ucvz) / this->_ucz);
+}
+
+UnitCell::vector_type UnitCell::unscape(UnitCell::vector_type pos)
+{
+    return pos.x() * this->_ucx * this->_ucvx +
+           pos.y() * this->_ucy * this->_ucvy +
+           pos.z() * this->_ucz * this->_ucvz;
 }

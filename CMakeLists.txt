@@ -53,7 +53,7 @@ install(TARGETS ${CMAKE_PROJECT_NAME} RUNTIME DESTINATION bin)
 # Does gtest work
 #
 
-find_package(GTest REQUIRED)
+find_package(GTest OPTIONAL)
 if (${GTEST_FOUND})
     message("GTest found")
     include_directories(${GTEST_INCLUDE_DIRS})
