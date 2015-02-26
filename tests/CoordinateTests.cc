@@ -150,6 +150,19 @@ TEST_F(CoordinateTest, compoundOperatorsPreserveTheInstanceOnReturn)
 }
 
 
+TEST_F(CoordinateTest, friendScalarProductYieldsRightValues)
+{
+    auto answer = coordinate * 2.0;
+    auto revers = 2.0 * coordinate;
+    ASSERT_FLOAT_EQ(2.0 * x, answer.x());
+    ASSERT_FLOAT_EQ(2.0 * y, answer.y());
+    ASSERT_FLOAT_EQ(2.0 * z, answer.z());
+    ASSERT_FLOAT_EQ(2.0 * x, revers.x());
+    ASSERT_FLOAT_EQ(2.0 * y, revers.y());
+    ASSERT_FLOAT_EQ(2.0 * z, revers.z());
+}
+
+
 TEST_F(CoordinateTest, dotOperatorYieldsRightValues)
 {
     ASSERT_FLOAT_EQ(0.0, coordinate.dot(origin));

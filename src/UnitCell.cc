@@ -51,7 +51,7 @@ UnitCell::UnitCell (
         const vector_type ucvx,
         const vector_type ucvy,
         const vector_type ucvz) :
-    _ucx(ucx), _ucy(ucx), _ucz(ucx),
+    _ucx(ucx), _ucy(ucy), _ucz(ucz),
     _ucvx(ucvx), _ucvy(ucvy), _ucvz(ucvz)
 {
 }
