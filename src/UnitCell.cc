@@ -77,20 +77,22 @@ UnitCell::vector_type UnitCell::translate(
         integer_type i,
         integer_type j,
         integer_type k,
-        vector_type pos) const
+        const vector_type& pos) const
 {
     return pos + this->translate(i, j, k);
 }
 
 
-UnitCell::vector_type UnitCell::scale(UnitCell::vector_type pos)
+UnitCell::vector_type UnitCell::scale(
+        const UnitCell::vector_type& pos) const
 {
     return UnitCell::vector_type(pos.dot(this->_ucvx) / this->_ucx,
                                  pos.dot(this->_ucvy) / this->_ucy,
                                  pos.dot(this->_ucvz) / this->_ucz);
 }
 
-UnitCell::vector_type UnitCell::unscape(UnitCell::vector_type pos)
+UnitCell::vector_type UnitCell::unscale(
+        const UnitCell::vector_type& pos) const
 {
     return pos.x() * this->_ucx * this->_ucvx +
            pos.y() * this->_ucy * this->_ucvy +

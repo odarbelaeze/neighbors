@@ -103,7 +103,7 @@ class UnitCell
                     integer_type i,
                     integer_type j,
                     integer_type k,
-                    vector_type pos) const;
+                    const vector_type& pos) const;
 
         /**
          * @brief Scale a vector into unitcell coordinates
@@ -121,7 +121,7 @@ class UnitCell
          *
          * @return vector_type
          */
-        vector_type uscale(const vector_type& pos) const;
+        vector_type unscale(const vector_type& pos) const;
 
     private:
 

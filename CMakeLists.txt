@@ -53,7 +53,7 @@ install(TARGETS ${CMAKE_PROJECT_NAME} RUNTIME DESTINATION bin)
 # Does gtest work
 #
 
-find_package(GTest OPTIONAL)
+find_package(GTest)
 if (${GTEST_FOUND})
     message("GTest found")
     include_directories(${GTEST_INCLUDE_DIRS})
@@ -62,6 +62,7 @@ if (${GTEST_FOUND})
         tests/AtomTests.cc src/Atom.cc
         tests/CoordinateTests.cc src/Coordinate.cc
         tests/NodeTests.cc src/Node.cc
+        tests/UnitCellTest.cc src/UnitCell.cc
     )
     target_link_libraries(tests ${GTEST_BOTH_LIBRARIES} pthread)
     add_test(AllAtomTests tests)
