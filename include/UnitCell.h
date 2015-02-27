@@ -126,6 +126,11 @@ class UnitCell
     private:
 
         /**
+         * @brief Set the inverse vectors to their proper values
+         */
+        void _set_inv_vectors();
+
+        /**
          * @brief Unit cell size x
          */
         real_type _ucx;
@@ -154,6 +159,21 @@ class UnitCell
          * @brief Unit vector
          */
         vector_type _ucvz;
+
+        /**
+         * @brief Inverse vector
+         */
+        vector_type _inv_ucvx;
+
+        /**
+         * @brief Inverse vector
+         */
+        vector_type _inv_ucvy;
+
+        /**
+         * @brief Inverse vector
+         */
+        vector_type _inv_ucvz;
 
 };
 

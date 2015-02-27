@@ -6,6 +6,7 @@ UnitCell::UnitCell() :
     _ucvy(0.0, 1.0, 0.0),
     _ucvz(0.0, 0.0, 1.0)
 {
+    this->_set_inv_vectors();
 }
 
 
@@ -18,6 +19,7 @@ UnitCell::UnitCell (
     _ucvy(0.0, 1.0, 0.0),
     _ucvz(0.0, 0.0, 1.0)
 {
+    this->_set_inv_vectors();
 }
 
 
@@ -41,6 +43,8 @@ UnitCell::UnitCell (
             ucvz.x() / this->_ucx,
             ucvz.y() / this->_ucx,
             ucvz.z() / this->_ucx);
+
+    this->_set_inv_vectors();
 }
 
 
@@ -54,11 +58,44 @@ UnitCell::UnitCell (
     _ucx(ucx), _ucy(ucy), _ucz(ucz),
     _ucvx(ucvx), _ucvy(ucvy), _ucvz(ucvz)
 {
+    this->_set_inv_vectors();
 }
 
 
 UnitCell::~UnitCell ()
 {
+}
+
+
+void UnitCell::_set_inv_vectors()
+{
+    auto vx = this->_ucx * this->_ucvx;
+    auto vy = this->_ucy * this->_ucvy;
+    auto vz = this->_ucz * this->_ucvz;
+
+    _inv_ucvx = UnitCell::vector_type(
+            vy.y() * vz.z() - vz.y() * vy.z(),
+            vz.y() * vx.z() - vx.y() * vz.z(),
+            vx.y() * vy.z() - vy.y() * vx.z());
+
+    _inv_ucvy = UnitCell::vector_type(
+            vz.x() * vy.z() - vy.x() * vz.z(),
+            vx.x() * vz.z() - vz.x() * vx.z(),
+            vy.x() * vx.z() - vx.x() * vy.z());
+
+    _inv_ucvz = UnitCell::vector_type(
+            vy.x() * vz.y() - vz.x() * vy.y(),
+            vz.x() * vx.y() - vx.x() * vz.y(),
+            vx.x() * vy.y() - vy.x() * vx.y());
+
+    auto det = vx.dot(Coordinate(
+                _inv_ucvx.x(),
+                _inv_ucvy.x(),
+                _inv_ucvz.x()));
+
+    _inv_ucvx *= 1.0 / det;
+    _inv_ucvy *= 1.0 / det;
+    _inv_ucvz *= 1.0 / det;
 }
 
 
@@ -86,9 +123,9 @@ UnitCell::vector_type UnitCell::translate(
 UnitCell::vector_type UnitCell::scale(
         const UnitCell::vector_type& pos) const
 {
-    return UnitCell::vector_type(pos.dot(this->_ucvx) / this->_ucx,
-                                 pos.dot(this->_ucvy) / this->_ucy,
-                                 pos.dot(this->_ucvz) / this->_ucz);
+    return pos.x() * this->_inv_ucvx +
+           pos.y() * this->_inv_ucvy +
+           pos.z() * this->_inv_ucvz;
 }
 
 UnitCell::vector_type UnitCell::unscale(
