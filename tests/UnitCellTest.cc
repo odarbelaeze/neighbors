@@ -94,3 +94,36 @@ TEST_F(UnitCellTest, rhombohedralUnitCellScalesToOnes)
     ASSERT_FLOAT_EQ(1, scaled.y());
     ASSERT_FLOAT_EQ(1, scaled.z());
 }
+
+
+TEST_F(UnitCellTest, cubicUnitCellUnscalesFromOnes)
+{
+    auto expected = cubic.translate(1, 1, 1);
+    auto unscaled = cubic.unscale(Coordinate(1, 1, 1));
+    ASSERT_FLOAT_EQ(expected.x(), unscaled.x());
+    ASSERT_FLOAT_EQ(expected.y(), unscaled.y());
+    ASSERT_FLOAT_EQ(expected.z(), unscaled.z());
+
+}
+
+
+TEST_F(UnitCellTest, tetragonalUnitCellUnscalesFromOnes)
+{
+    auto expected = tetragonal.translate(1, 1, 1);
+    auto unscaled = tetragonal.unscale(Coordinate(1, 1, 1));
+    ASSERT_FLOAT_EQ(expected.x(), unscaled.x());
+    ASSERT_FLOAT_EQ(expected.y(), unscaled.y());
+    ASSERT_FLOAT_EQ(expected.z(), unscaled.z());
+
+}
+
+
+TEST_F(UnitCellTest, rhombohedralUnitCellUnscalesFromOnes)
+{
+    auto expected = rhombohedral.translate(1, 1, 1);
+    auto unscaled = rhombohedral.unscale(Coordinate(1, 1, 1));
+    ASSERT_FLOAT_EQ(expected.x(), unscaled.x());
+    ASSERT_FLOAT_EQ(expected.y(), unscaled.y());
+    ASSERT_FLOAT_EQ(expected.z(), unscaled.z());
+
+}

@@ -86,9 +86,10 @@ UnitCell::vector_type UnitCell::translate(
 UnitCell::vector_type UnitCell::scale(
         const UnitCell::vector_type& pos) const
 {
-    return UnitCell::vector_type(pos.dot(this->_ucvx) / this->_ucx,
-                                 pos.dot(this->_ucvy) / this->_ucy,
-                                 pos.dot(this->_ucvz) / this->_ucz);
+    return UnitCell::vector_type(
+            pos.dot(this->_ucvx) / this->_ucx,
+            pos.dot(this->_ucvy) / this->_ucy,
+            pos.dot(this->_ucvz) / this->_ucz);
 }
 
 UnitCell::vector_type UnitCell::unscale(
