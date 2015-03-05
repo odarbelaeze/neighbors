@@ -1,9 +1,8 @@
 {
     "doc": {
-        "0": "Atomos de tal cosa con tal cosa",
-        "1": "Atomos de tal otra cosa con tal otra cosa",
-        "2": "Atomos de tal cosa y ya",
-        "0-0": "Se debe a tal cosa y es tal mecanismo"
+        "0": "Sites type 0 are this and that...",
+        "1": "Sites type 1 are this and that...",
+        "0-0": "This interaction is due to something and..."
     },
     "unitcell": {
         "scale": 1.0,
@@ -28,31 +27,11 @@
             "cut": 1.0,
             "exchange": 0.5
         },
-        "0-2": {
-            "cut": 1.0,
-            "exchange": 0.5
-        },
         "1-0": {
             "cut": 1.0,
             "exchange": 0.5
         },
         "1-1": {
-            "cut": 1.0,
-            "exchange": 0.5
-        },
-        "1-2": {
-            "cut": 1.0,
-            "exchange": 0.5
-        },
-        "2-0": {
-            "cut": 1.0,
-            "exchange": 0.5
-        },
-        "2-1": {
-            "cut": 1.0,
-            "exchange": 0.5
-        },
-        "2-2": {
             "cut": 1.0,
             "exchange": 0.5
         }
