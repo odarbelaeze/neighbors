@@ -25,6 +25,7 @@ class Logger
          * @brief Creates a Logger instance given an ostream target
          *
          * @param target
+         * @param separator
          */
         Logger (std::ostream& target=std::cout, std::string separator = " ");
 
@@ -161,6 +162,10 @@ class Logger
          * @brief std::ostream reference of where to log
          */
         std::ostream& _target;
+
+        /**
+         * @brief String that separates two adjacent registers
+         */
         std::string _sep;
 
 };

@@ -59,7 +59,7 @@ class NodeRepo
         /**
          * @brief Inserts the given node into the tree
          *
-         * @param node
+         * @param node the node to be inserted
          * @return this node for a fluent API
          */
         NodeRepo& insert (const Node& node);
